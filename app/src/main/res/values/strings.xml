@@ -6,6 +6,9 @@
     <string name="Receita">Receita</string>
     <string name="Despesa">Despesa</string>
     <string name="Transações">Transações</string>
-
+    <string name="Titulo">Titulo</string>
+    <string name="Valor">Valor</string>
+    <string name="Editar">Editar</string>
+    <string name="Apagar">Apagar</string>
 
 </resources>
