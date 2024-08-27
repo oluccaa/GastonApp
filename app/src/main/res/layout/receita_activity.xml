@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/light_grey"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_returnPageReceita"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="44dp"
+            android:backgroundTint="@color/black"
+            android:background="@drawable/ic_arrow_return_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="168dp"
+            android:layout_marginTop="52dp"
+            android:text="RECEITA"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp">
+
+        <EditText
+            android:id="@+id/editTextValorReceita"
+            android:layout_width="343dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="25dp"
+            android:hint="Valor da Receita"
+            android:inputType="numberDecimal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextTituloReceita"
+            android:layout_width="343dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="25dp"
+            android:hint="Título da Receita"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="@id/editTextValorReceita"
+            app:layout_constraintTop_toBottomOf="@id/editTextValorReceita" />
+
+        <EditText
+            android:id="@+id/editTextCategoriaReceita"
+            android:layout_width="343dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="25dp"
+            android:hint="Categoria da Receita"
+            app:layout_constraintStart_toStartOf="@id/editTextTituloReceita"
+            app:layout_constraintTop_toBottomOf="@id/editTextTituloReceita" />
+
+        <EditText
+            android:id="@+id/editTextDataReceita"
+            android:layout_width="343dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="25dp"
+            android:hint="Data da Receita"
+            android:inputType="date"
+            app:layout_constraintStart_toStartOf="@id/editTextCategoriaReceita"
+            app:layout_constraintTop_toBottomOf="@id/editTextCategoriaReceita"/>
+
+        <Button
+            android:id="@+id/buttonAdicionarReceita"
+            android:layout_width="343dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="25dp"
+            android:text="Adicionar"
+            app:layout_constraintStart_toStartOf="@id/editTextDataReceita"
+            app:layout_constraintTop_toBottomOf="@id/editTextDataReceita"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:menu="@menu/bottom_nav_menu"
+            />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

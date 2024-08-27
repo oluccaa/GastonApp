@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/main">
+
+        <!-- HomeActivity -->
+        <activity
+            android:id="@+id/mainActivity"
+            android:name="com.example.gaston.MainActivity"
+            android:label="Home"
+            tools:layout="@layout/activity_main">
+            <!-- Ação para ir de HomeActivity para DespesaActivity -->
+            <action
+                android:id="@+id/action_main_to_receita"
+                app:destination="@id/receita_activity" />
+            <!-- Ação para ir de HomeActivity para ReceitaActivity -->
+            <action
+                android:id="@+id/action_main_to_despesa"
+                app:destination="@id/despesa_activity" />
+        </activity>
+
+        <!-- DespesaActivity -->
+        <activity
+            android:id="@+id/despesa_activity"
+            android:name="com.example.gaston.despesa_activity"
+            android:label="Despesa"
+            tools:layout="@layout/despesa_activity" />
+
+        <!-- ReceitaActivity -->
+        <activity
+            android:id="@+id/receita_activity"
+            android:name="com.example.gaston.receita_activity"
+            android:label="Receita"
+            tools:layout="@layout/receita_activity" />
+</navigation>

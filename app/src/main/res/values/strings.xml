@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Gaston</string>
+    <string name="txt_saldo">R$ 1412,00</string>
+    <string name="txt_saldoRestante">SALDO RESTANTE</string>
+    <string name="Home">Home</string>
+    <string name="Receita">Receita</string>
+    <string name="Despesa">Despesa</string>
+    <string name="Transações">Transações</string>
+
+
+</resources>
