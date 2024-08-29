@@ -67,7 +67,7 @@ class despesa_activity : AppCompatActivity() {
         // Configura o clique do botão para navegar para a MainActivity
         findViewById<Button>(R.id.btn_returnPageDespesa).setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            // Adiciona flags para limpar a pilha de atividades
+            // Adiciona finishAffinity() para limpar a pilha de atividades
             startActivity(intent)
             finishAffinity()
         }
@@ -81,13 +81,13 @@ class despesa_activity : AppCompatActivity() {
                 R.id.navigation_home -> {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
-                    finishAffinity()
+                    // Adiciona finishAffinity() para limpar a pilha de atividades
                     true
                 }
                 R.id.navigation_receita -> {
                     val intent = Intent(this, receita_activity::class.java)
                     startActivity(intent)
-                    finishAffinity()
+                    // Adiciona finishAffinity() para limpar a pilha de atividades
                     true
                 }
                 R.id.navigation_despesa -> {
@@ -97,7 +97,7 @@ class despesa_activity : AppCompatActivity() {
                 R.id.navigation_transacao -> {
                     val intent = Intent(this, transacao_activity::class.java)
                     startActivity(intent)
-                    finishAffinity()
+                    // Adiciona finishAffinity() para limpar a pilha de atividades
                     true
                 }
                 else -> false

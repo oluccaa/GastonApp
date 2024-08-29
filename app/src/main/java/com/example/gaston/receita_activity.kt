@@ -54,9 +54,9 @@ class receita_activity : AppCompatActivity() {
         // Configura o clique do botão para navegar para MainActivity
         findViewById<Button>(R.id.btn_returnPageReceita).setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            // Adiciona flags para limpar a pilha de atividades
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            // Adiciona finishAffinity() para limpar a pilha de atividades
             startActivity(intent)
+            finishAffinity()
         }
 
         // Configura o BottomNavigationView
@@ -68,7 +68,6 @@ class receita_activity : AppCompatActivity() {
                 R.id.navigation_home -> {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
-                    finishAffinity()
                     true
                 }
                 R.id.navigation_receita -> {
@@ -78,13 +77,11 @@ class receita_activity : AppCompatActivity() {
                 R.id.navigation_despesa -> {
                     val intent = Intent(this, despesa_activity::class.java)
                     startActivity(intent)
-                    finishAffinity()
                     true
                 }
                 R.id.navigation_transacao -> {
                     val intent = Intent(this, transacao_activity::class.java)
                     startActivity(intent)
-                    finishAffinity()
                     true
                 }
                 else -> false

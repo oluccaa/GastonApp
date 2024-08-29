@@ -47,14 +47,12 @@ class MainActivity : AppCompatActivity() {
         // Configura o clique do botão para navegar para receita_activity
         findViewById<Button>(R.id.buttonReceita).setOnClickListener {
             val intent = Intent(this, receita_activity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
 
         // Configura o clique do botão para navegar para com.example.gaston.despesa_activity
         findViewById<Button>(R.id.buttonDespesa).setOnClickListener {
             val intent = Intent(this, despesa_activity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
 
@@ -68,19 +66,16 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.navigation_receita -> {
                     val intent = Intent(this, receita_activity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     true
                 }
                 R.id.navigation_despesa -> {
                     val intent = Intent(this, despesa_activity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     true
                 }
                 R.id.navigation_transacao -> {
                     val intent = Intent(this, transacao_activity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     true
                 }

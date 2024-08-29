@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="168dp"
+            android:layout_marginStart="156dp"
             android:layout_marginTop="52dp"
             android:text="DESPESA"
             android:textColor="@color/black"
@@ -85,42 +85,43 @@
 
         <RadioGroup
             android:id="@+id/radioGroupTipoDespesa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_width="339dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="25dp"
             android:hint="Tipo da Despesa"
+            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="@id/editTextDataDespesa"
-            app:layout_constraintTop_toBottomOf="@id/editTextDataDespesa"
-            >
+            app:layout_constraintTop_toBottomOf="@id/editTextDataDespesa">
 
             <RadioButton
                 android:id="@+id/radioButtonEssencial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Essencial"/>
+                android:text="Essencial" />
 
             <RadioButton
                 android:id="@+id/radioButtonNecessario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Necessário"/>
+                android:text="Necessário" />
 
             <RadioButton
                 android:id="@+id/radioButtonExtra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Extra"/>
+                android:text="Extra" />
+
         </RadioGroup>
 
         <Button
             android:id="@+id/buttonAdicionarDespesa"
             android:layout_width="343dp"
             android:layout_height="44dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="90dp"
             android:text="Adicionar"
-            app:layout_constraintStart_toStartOf="@id/radioGroupTipoDespesa"
-            app:layout_constraintTop_toBottomOf="@id/radioGroupTipoDespesa" />
+            app:layout_constraintStart_toStartOf="@id/editTextDataDespesa"
+            app:layout_constraintTop_toBottomOf="@id/editTextDataDespesa" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

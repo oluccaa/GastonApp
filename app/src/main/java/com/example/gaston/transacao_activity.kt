@@ -54,8 +54,8 @@ class transacao_activity : AppCompatActivity() {
         // Configura o clique do botão para navegar para a MainActivity
         findViewById<Button>(R.id.btn_returnPageTransacao).setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+            // Adiciona finishAffinity() para limpar a pilha de atividades
         }
 
         // Configura o BottomNavigationView com a nova API
@@ -72,7 +72,6 @@ class transacao_activity : AppCompatActivity() {
                 R.id.navigation_receita -> {
                     val intent = Intent(this, receita_activity::class.java)
                     startActivity(intent)
-                    finishAffinity()
                     true
                 }
                 R.id.navigation_despesa -> {
