@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/anti_flash_light"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -10,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:background="@color/light_grey">
+        android:background="@color/anti_flash_light">
 
         <Button
             android:id="@+id/btn_returnPageDespesa"
@@ -41,7 +42,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="450dp">
+        android:layout_height="450dp"
+        android:background="@color/anti_flash_light">
 
         <EditText
             android:id="@+id/editTextValorDespesa"
@@ -126,11 +128,13 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/anti_flash_light">
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/light_grey"
             android:layout_gravity="bottom"
             app:menu="@menu/bottom_nav_menu"
             />

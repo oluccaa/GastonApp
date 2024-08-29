@@ -5,18 +5,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/anti_flash_light"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="@color/azul_home">
+        android:padding="8dp"
+        android:background="@color/anti_flash_light">
     <View
         android:id="@+id/contentCirculo"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="20dp"
         android:background="@drawable/container_circle"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,26 +36,39 @@
         >
     </ImageView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/txt_saldo"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contentCirculo">
-    </TextView>
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="33dp"
+            android:src="@drawable/logo_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="136dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginStart="144dp"
+            android:layout_marginTop="92dp"
+            android:text="@string/txt_saldo"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contentCirculo">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="124dp"
             android:text="@string/txt_saldoRestante"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +79,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="230dp"
-        android:background="@color/white">
+        android:background="@color/anti_flash_light">
 
         <Button
             android:id="@+id/buttonReceita"
@@ -90,7 +105,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp">
+        android:layout_height="170dp"
+        android:background="@color/anti_flash_light">
 
         <TextView
             android:id="@+id/textViewTotalDespesas"
@@ -124,6 +140,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:background="@color/light_grey"
             app:menu="@menu/bottom_nav_menu"
             />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
