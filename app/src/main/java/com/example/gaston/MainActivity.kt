@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity() {
             val totalReceitas = dao.getAllReceitas().sumOf { it.valor }
 
             runOnUiThread {
-                textViewTotalDespesas.text = "Total Despesas: R$ $totalDespesas"
-                textViewTotalReceitas.text = "Total Receitas: R$ $totalReceitas"
+                textViewTotalDespesas.text = "- R$ $totalDespesas"
+                textViewTotalReceitas.text = "+ R$ $totalReceitas"
             }
         }
 

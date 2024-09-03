@@ -5,56 +5,49 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/anti_flash_light"
+    android:background="@color/mint_cream"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:padding="8dp"
-        android:background="@color/anti_flash_light">
-    <View
-        android:id="@+id/contentCirculo"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/container_circle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        >
-    </View>
-    <ImageView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:src="@drawable/ic_usuario"
-        app:layout_constraintTop_toTopOf="@id/contentCirculo"
-        app:layout_constraintStart_toStartOf="@id/contentCirculo"
-        app:layout_constraintEnd_toEndOf="@id/contentCirculo"
-        app:layout_constraintBottom_toBottomOf="@id/contentCirculo"
-        >
-    </ImageView>
+        android:background="@drawable/container_rectangle"
+        android:padding="8dp">
 
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="33dp"
-            android:src="@drawable/logo_horizontal"
+        <View
+            android:id="@+id/contentCirculo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/container_circle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+        </View>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="iconeUser"
+            android:src="@drawable/ic_usuario"
+            app:layout_constraintBottom_toBottomOf="@id/contentCirculo"
+            app:layout_constraintEnd_toEndOf="@id/contentCirculo"
+            app:layout_constraintStart_toStartOf="@id/contentCirculo"
+            app:layout_constraintTop_toTopOf="@id/contentCirculo">
         </ImageView>
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="144dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginStart="116dp"
+            android:layout_marginTop="32dp"
             android:text="@string/txt_saldo"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,10 +58,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="128dp"
-            android:layout_marginTop="124dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="56dp"
             android:text="@string/txt_saldoRestante"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,64 +69,163 @@
 
         </TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/resumoValues"
         android:layout_width="match_parent"
         android:layout_height="230dp"
-        android:background="@color/anti_flash_light">
+        android:background="@color/mint_cream">
+
+        <View
+        android:id="@+id/squareReceitas"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/square_rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        </View>
+
+        <View
+            android:id="@+id/squareGreen"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/square_green"
+            app:layout_constraintStart_toStartOf="@id/squareReceitas"
+            app:layout_constraintBottom_toBottomOf="@id/squareReceitas"
+            app:layout_constraintTop_toTopOf="@id/squareReceitas">
+
+        </View>
+
+        <View
+            android:id="@+id/cifraoGreen"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cifrao_green"
+            app:layout_constraintStart_toStartOf="@id/squareGreen"
+            app:layout_constraintEnd_toEndOf="@id/squareGreen"
+            app:layout_constraintBottom_toBottomOf="@id/squareGreen"
+            app:layout_constraintTop_toTopOf="@id/squareGreen">
+
+        </View>
+
+        <TextView
+            android:id="@+id/textViewTotalReceitas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="10dp"
+            android:text="+ R$ 0.00"
+            android:textColor="@color/green"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/squareReceitas"
+            app:layout_constraintTop_toTopOf="@id/squareReceitas" />
+
+        <View
+            android:id="@+id/squareDespesas"
+            android:layout_width="160dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/square_rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </View>
+
+        <View
+            android:id="@+id/squareRed"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/square_red"
+            app:layout_constraintStart_toStartOf="@id/squareDespesas"
+            app:layout_constraintBottom_toBottomOf="@id/squareDespesas"
+            app:layout_constraintTop_toTopOf="@id/squareDespesas">
+
+        </View>
+
+        <View
+            android:id="@+id/cifraoRed"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cifrao_red"
+            app:layout_constraintStart_toStartOf="@id/squareRed"
+            app:layout_constraintEnd_toEndOf="@id/squareRed"
+            app:layout_constraintBottom_toBottomOf="@id/squareRed"
+            app:layout_constraintTop_toTopOf="@id/squareRed">
+
+        </View>
+
+        <TextView
+            android:id="@+id/textViewTotalDespesas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="10dp"
+            android:text="- R$ 0.00"
+            android:textColor="@color/red"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/squareDespesas"
+            app:layout_constraintTop_toTopOf="@id/squareDespesas" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="143dp"
+        android:background="@color/mint_cream">
 
         <Button
             android:id="@+id/buttonReceita"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="96dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="50dp"
             android:text="@string/Receita"
+            android:backgroundTint="@color/green"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonDespesa"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/buttonDespesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="216dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginTop="50dp"
             android:text="@string/Despesa"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:background="@color/anti_flash_light">
-
-        <TextView
-            android:id="@+id/textViewTotalDespesas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="220dp"
-            android:layout_marginTop="76dp"
-            android:text="Total Despesas: R$ 0.00"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textViewTotalReceitas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="76dp"
-            android:text="Total Receitas: R$ 0.00"
-            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/buttonReceita"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/coordinatorNavigation"
+        >
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"

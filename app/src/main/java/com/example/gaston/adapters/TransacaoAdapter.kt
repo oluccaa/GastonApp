@@ -40,11 +40,11 @@ class TransacaoAdapter(
             when (transacao) {
                 is Despesa -> {
                     textViewTitulo.text = transacao.titulo
-                    textViewValor.text = "- R$ ${transacao.valor}"
+                    textViewValor.text = " - R$ ${transacao.valor}"
                 }
                 is Receita -> {
                     textViewTitulo.text = transacao.titulo
-                    textViewValor.text = "+ R$ ${transacao.valor}"
+                    textViewValor.text = " + R$ ${transacao.valor}"
                 }
             }
 
