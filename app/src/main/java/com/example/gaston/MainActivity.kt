@@ -56,6 +56,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Configura o clique do botão para navegar para com.example.gaston.despesa_activity
+        findViewById<Button>(R.id.buttonOrcamento).setOnClickListener {
+            val intent = Intent(this, orcamento_activity::class.java)
+            startActivity(intent)
+        }
+
         // Configura o BottomNavigationView
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.setOnItemSelectedListener { item ->
