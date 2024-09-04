@@ -1,5 +1,6 @@
 package com.example.gaston
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -7,41 +8,43 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
 import com.example.gaston.dao.TransacaoDao
 import com.example.gaston.database.AppDatabase
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var db: AppDatabase
-    private lateinit var dao: TransacaoDao
+    private val db by lazy { AppDatabase.getDatabase(this) }
+    private val dao by lazy { db.transacaoDao() }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Força o uso do tema claro
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContentView(R.layout.activity_main)
 
-        db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "transacao-database"
-        ).build()
-
-        dao = db.transacaoDao()
-
         val textViewTotalDespesas = findViewById<TextView>(R.id.textViewTotalDespesas)
         val textViewTotalReceitas = findViewById<TextView>(R.id.textViewTotalReceitas)
+        val textViewOrcamento = findViewById<TextView>(R.id.textView10)
+
 
         lifecycleScope.launch {
-            val totalDespesas = dao.getAllDespesas().sumOf { it.valor }
-            val totalReceitas = dao.getAllReceitas().sumOf { it.valor }
-
-            runOnUiThread {
-                textViewTotalDespesas.text = "- R$ $totalDespesas"
-                textViewTotalReceitas.text = "+ R$ $totalReceitas"
+            val totalDespesas = withContext(Dispatchers.IO) {
+                dao.getAllDespesas().sumOf { it.valor }
             }
+            val totalReceitas = withContext(Dispatchers.IO) {
+                dao.getAllReceitas().sumOf { it.valor }
+            }
+            val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
+            val orcamento = sharedPreferences.getFloat("valor_orcamento", 0.0f)
+
+            textViewTotalDespesas.text = "- R$ $totalDespesas"
+            textViewTotalReceitas.text = "+ R$ $totalReceitas"
+            textViewOrcamento.text = "R$ ${String.format("%.2f", orcamento)}"
         }
 
         // Configura o clique do botão para navegar para receita_activity
@@ -50,15 +53,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Configura o clique do botão para navegar para com.example.gaston.despesa_activity
+        // Configura o clique do botão para navegar para despesa_activity
         findViewById<Button>(R.id.buttonDespesa).setOnClickListener {
             val intent = Intent(this, despesa_activity::class.java)
             startActivity(intent)
         }
 
-        // Configura o clique do botão para navegar para com.example.gaston.despesa_activity
+        // Configura o clique do botão para navegar para OrcamentoActivity
         findViewById<Button>(R.id.buttonOrcamento).setOnClickListener {
-            val intent = Intent(this, orcamento_activity::class.java)
+            val intent = Intent(this, OrcamentoActivity::class.java)
             startActivity(intent)
         }
 
@@ -89,5 +92,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }

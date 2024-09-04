@@ -28,5 +28,6 @@
     <color name="azul_home">#1d56ff</color>
     <color name="light_blue">#6383e4</color>
     <color name="space_cadet">#2B2D42</color>
+    <color name="backgrounColor">#fafafa</color>
 
 </resources>
