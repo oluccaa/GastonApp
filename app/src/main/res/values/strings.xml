@@ -4,6 +4,7 @@
     <string name="txt_saldoRestante">SALDO RESTANTE</string>
     <string name="Home">Home</string>
     <string name="Receita">Receita</string>
+    <string name="Orcamento">Orçamento</string>
     <string name="Despesa">Despesa</string>
     <string name="Transações">Transações</string>
     <string name="Titulo">Titulo</string>
