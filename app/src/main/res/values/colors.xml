@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="red">#D90429</color>
-    <color name="light_red">#EF233C</color>
-    <color name="anti_flash_light">#EDF2F4</color>
-    <color name="cool_grey">#8D99AE</color>
-    <color name="space_cadet">#2B2D42</color>
+
+    <!-- Primary paleta de cores -->
+
+    <color name="dark_blue">#1a4789</color>
+    <color name="gray">#808080</color>
+    <color name="desert_sand">#D8BFAA</color>
+    <color name="mint_cream">#EBF5EE</color>
+    <color name="columbia_blue">#BFD1E5</color>
 
     <!-- Outras cores -->
 
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#D90429</color>
+    <color name="light_red">#ff9990</color>
+    <color name="anti_flash_light">#EDF2F4</color>
+    <color name="cool_grey">#8D99AE</color>
+
     <color name="light_grey">#e3e4e7</color>
     <color name="dark_grey">#646464</color>
+
+    <!--<color name="light_red">#FF001F</color>-->
     <color name="green">#34a853</color>
+    <color name="light_green">#b4ffc8</color>
+
     <color name="azul_home">#1d56ff</color>
     <color name="light_blue">#6383e4</color>
-    <color name="dark_blue">#1a4789</color>
+    <color name="space_cadet">#2B2D42</color>
+    <color name="backgrounColor">#fafafa</color>
+
 </resources>

@@ -4,11 +4,16 @@
     <string name="txt_saldoRestante">SALDO RESTANTE</string>
     <string name="Home">Home</string>
     <string name="Receita">Receita</string>
+    <string name="Orcamento">Orçamento</string>
     <string name="Despesa">Despesa</string>
     <string name="Transações">Transações</string>
     <string name="Titulo">Titulo</string>
     <string name="Valor">Valor</string>
     <string name="Editar">Editar</string>
     <string name="Apagar">Apagar</string>
+    <string name="rectangle">rectangle</string>
+    <string name="iconebtnuser">iconeBtnUser</string>
+    <string name="resumoReceita">+ R$ 0.00</string>
+    <string name="resumoDespesa">- R$ 0.00</string>
 
 </resources>
