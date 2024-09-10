@@ -4,8 +4,8 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.gaston.models.Despesa
-import com.example.gaston.models.Receita
+import com.example.gaston.model.Despesa
+import com.example.gaston.model.Receita
 
 @Dao
 interface TransacaoDao {
