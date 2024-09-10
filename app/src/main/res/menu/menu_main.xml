@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_home"
+        android:title="@string/menu_bottom_bar_home"
+        android:icon="@drawable/ic_menu_home"/>
+
+    <item android:id="@+id/menu_despesa"
+        android:title="@string/menu_bottom_bar_despesa"
+        android:icon="@drawable/ic_menu_saidamoney"/>
+
+    <item android:id="@+id/menu_orcamento"
+        android:title="@string/menu_bottom_bar_orcamento"
+        android:icon="@drawable/ic_menu_orcamento"/>
+
+    <item android:id="@+id/menu_receita"
+        android:title="@string/menu_bottom_bar_receita"
+        android:icon="@drawable/ic_menu_entradamoney"/>
+
+    <item android:id="@+id/menu_historico"
+        android:title="@string/menu_bottom_bar_historico"
+        android:icon="@drawable/ic_menu_history"/>
+
+</menu>

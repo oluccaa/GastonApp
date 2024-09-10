@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/anti_flash_light"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
-
+    tools:context=".ui.fragment.DespesaFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:background="@color/anti_flash_light">
+        android:layout_height="130dp">
 
         <Button
             android:id="@+id/btn_returnPageDespesa"
@@ -42,8 +40,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:background="@color/anti_flash_light">
+        android:layout_height="450dp">
 
         <EditText
             android:id="@+id/editTextValorDespesa"
@@ -125,19 +122,5 @@
             app:layout_constraintStart_toStartOf="@id/editTextDataDespesa"
             app:layout_constraintTop_toBottomOf="@id/editTextDataDespesa" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/anti_flash_light">
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/light_grey"
-            android:layout_gravity="bottom"
-            app:menu="@menu/bottom_nav_menu"
-            />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>

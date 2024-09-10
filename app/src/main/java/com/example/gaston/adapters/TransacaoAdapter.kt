@@ -1,23 +1,24 @@
 package com.example.gaston.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gaston.models.Despesa
+import com.example.gaston.model.Despesa
 import com.example.gaston.R
-import com.example.gaston.models.Receita
+import com.example.gaston.model.Receita
 
 class TransacaoAdapter(
-    private val transacoes: List<Any>, // Lista de transações, pode ser uma mistura de com.example.gaston.models.Despesa e com.example.gaston.models.Receita
+    private var transacoes: List<Any>, // Lista de transações
     private val onEditClick: (Any) -> Unit, // Callback para editar
     private val onDeleteClick: (Any) -> Unit // Callback para deletar
 ) : RecyclerView.Adapter<TransacaoAdapter.TransacaoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransacaoViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_transacao, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_historico, parent, false)
         return TransacaoViewHolder(view)
     }
 
@@ -28,6 +29,12 @@ class TransacaoAdapter(
 
     override fun getItemCount(): Int {
         return transacoes.size
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newTransacoes: List<Any>) {
+        transacoes = newTransacoes
+        notifyDataSetChanged() // Notifica o RecyclerView sobre a mudança de dados
     }
 
     class TransacaoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

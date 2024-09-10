@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/menu_home">
+
+    <fragment
+        android:id="@+id/menu_home"
+        android:name="com.example.gaston.ui.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/menu_despesa"
+        android:name="com.example.gaston.ui.fragment.DespesaFragment"
+        android:label="fragment_despesa"
+        tools:layout="@layout/fragment_despesa" />
+    <fragment
+        android:id="@+id/menu_receita"
+        android:name="com.example.gaston.ui.fragment.ReceitaFragment"
+        android:label="fragment_receita"
+        tools:layout="@layout/fragment_receita" />
+    <fragment
+        android:id="@+id/menu_orcamento"
+        android:name="com.example.gaston.ui.fragment.OrcamentoFragment"
+        android:label="fragment_orcamento"
+        tools:layout="@layout/fragment_orcamento">
+        <action
+            android:id="@+id/action_orcamentoFragment_to_homeFragment"
+            app:destination="@id/menu_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu_historico"
+        android:name="com.example.gaston.ui.fragment.HistoricoFragment"
+        android:label="fragment_historico"
+        tools:layout="@layout/fragment_historico" />
+    </navigation>
