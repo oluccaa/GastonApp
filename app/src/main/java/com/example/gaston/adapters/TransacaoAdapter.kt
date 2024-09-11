@@ -58,14 +58,14 @@ class TransacaoAdapter(
                     textViewTitulo.text = transacao.titulo
                     textViewValor.text = formatCurrency(transacao.valor)
                     textViewValor.setTextColor(Color.RED)
-                    textViewData.text = formatDate(transacao.data)
+                    textViewData.text = transacao.data
                     textViewCategoria.text = transacao.categoria
                 }
                 is Receita -> {
                     textViewTitulo.text = transacao.titulo
                     textViewValor.text = formatCurrency(transacao.valor)
                     textViewValor.setTextColor(Color.GREEN)
-                    textViewData.text = formatDate(transacao.data)
+                    textViewData.text = transacao.data
                     textViewCategoria.text = transacao.categoria
                 }
             }
@@ -77,17 +77,6 @@ class TransacaoAdapter(
         private fun formatCurrency(value: Double): String {
             val numberFormat = NumberFormat.getCurrencyInstance(Locale.getDefault())
             return numberFormat.format(value)
-        }
-
-        private fun formatDate(dateInMillis: String): String {
-            return try {
-                val instant = Instant.ofEpochMilli(dateInMillis.toLong())
-                val localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate()
-                val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.getDefault())
-                localDate.format(formatter)
-            } catch (e: Exception) {
-                "Data inválida"
-            }
         }
     }
 }

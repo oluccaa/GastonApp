@@ -73,17 +73,15 @@ class ReceitaFragment : Fragment() {
 
         // Lógica ao clicar no botão de adicionar
         buttonAdicionarReceita.setOnClickListener {
-            val valorStr = valorEditText.text.toString().replace("R\\$\\s*".toRegex(), "").replace(",", ".")
+            // Remover símbolos "R$", pontos e vírgulas do valor
+            val valorStr = valorEditText.text.toString()
+                .replace("R\\$\\s*".toRegex(), "") // Remove "R$"
+                .replace(".", "") // Remove pontos
+                .replace(",", ".") // Converte vírgulas para ponto decimal
+
             val titulo = tituloEditText.text.toString()
             val categoria = categoriaSelecionada
             val data = dataEditText.text.toString()
-
-            // Adiciona o sinal de "+" para receita
-            val valor = if (valorStr.isNotBlank()) {
-                "+" + valorStr.toDoubleOrNull().toString()
-            } else {
-                "0.0"
-            }
 
             // Valida os campos
             if (titulo.isBlank() || categoria.isNullOrBlank() || data.isBlank() || valorStr.isBlank() || valorStr.toDoubleOrNull() == null) {
@@ -91,13 +89,18 @@ class ReceitaFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            // Converte o valor para Double
+            val valor = valorStr.toDoubleOrNull() ?: 0.0
+
+            // Cria o objeto Receita
             val receita = Receita(
-                valor = valorStr.toDoubleOrNull() ?: 0.0,
+                valor = valor,
                 titulo = titulo,
                 categoria = categoria,
                 data = data
             )
 
+            // Salva a receita no banco de dados usando o ViewModel
             lifecycleScope.launch {
                 try {
                     receitaViewModel.adicionarReceita(receita)

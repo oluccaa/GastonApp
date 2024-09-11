@@ -10,11 +10,11 @@ class CurrencyFormattingTextWatcher(private val editText: EditText) : TextWatche
     private val numberFormat = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-        // Nothing to do before text is changed
+        // Nada a fazer antes da mudança do texto
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        // Nothing to do while text is being changed
+        // Nada a fazer enquanto o texto está sendo mudado
     }
 
     override fun afterTextChanged(s: Editable?) {
@@ -22,20 +22,30 @@ class CurrencyFormattingTextWatcher(private val editText: EditText) : TextWatche
 
         isFormatting = true
 
-        val originalString = s.toString().replace("R$\\s*".toRegex(), "").replace(",", ".")
-        val cleanString = originalString.replace("[^\\d]".toRegex(), "")
+        // Remove os caracteres de moeda e formatação do valor atual
+        val originalString = s.toString().replace("[R$\\s,.]".toRegex(), "")
 
-        if (cleanString.isEmpty()) {
+        if (originalString.isEmpty()) {
             editText.setText("")
             isFormatting = false
             return
         }
 
-        val parsedValue = cleanString.toDouble() / 100
-        val formattedValue = numberFormat.format(parsedValue)
+        try {
+            // Converte o valor para Double e formata novamente
+            val parsedValue = originalString.toDouble() / 100
+            val formattedValue = numberFormat.format(parsedValue)
 
-        editText.setText(formattedValue)
-        editText.setSelection(formattedValue.length)
+            // Define o texto formatado no EditText
+            editText.setText(formattedValue)
+            editText.setSelection(formattedValue.length) // Move o cursor para o final
+
+        } catch (e: NumberFormatException) {
+            // Em caso de erro, limpar o campo e mostrar uma mensagem de erro
+            editText.setText("")
+            editText.setSelection(0)
+            e.printStackTrace()
+        }
 
         isFormatting = false
     }

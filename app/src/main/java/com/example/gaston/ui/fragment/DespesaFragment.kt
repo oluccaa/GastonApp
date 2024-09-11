@@ -73,7 +73,11 @@ class DespesaFragment : Fragment() {
 
         // Lógica ao clicar no botão de adicionar
         buttonAdicionarDespesa.setOnClickListener {
-            val valorStr = valorEditText.text.toString().replace("R\\$\\s*".toRegex(), "").replace(",", ".")
+            // Remover "R$", pontos e vírgulas do valor
+            val valorStr = valorEditText.text.toString()
+                .replace("R\\$\\s*".toRegex(), "")  // Remove o símbolo de R$
+                .replace("[,.]".toRegex(), "")      // Remove pontos e vírgulas para manter só números
+
             val titulo = tituloEditText.text.toString()
             val categoria = categoriaSelecionada
             val data = dataEditText.text.toString()
@@ -84,20 +88,14 @@ class DespesaFragment : Fragment() {
                 else -> "Outro"
             }
 
-            // Adiciona o sinal de "-" para despesa
-            val valor = if (valorStr.isNotBlank()) {
-                "-" + valorStr.toDoubleOrNull().toString()
-            } else {
-                "0.0"
-            }
-
             // Valida os campos
-            if (titulo.isBlank() || categoria.isNullOrBlank() || data.isBlank() || valor.isBlank()) {
+            if (titulo.isBlank() || categoria.isNullOrBlank() || data.isBlank() || valorStr.isBlank()) {
                 Toast.makeText(requireContext(), "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val valorDouble = valor.toDoubleOrNull()
+            // Converte o valor em Double
+            val valorDouble = valorStr.toDoubleOrNull()?.div(100) // Divide por 100 para ajustar casas decimais
             if (valorDouble == null) {
                 Toast.makeText(requireContext(), "Valor inválido.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
