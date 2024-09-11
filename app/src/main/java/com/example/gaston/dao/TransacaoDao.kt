@@ -4,14 +4,14 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.gaston.models.Despesa
-import com.example.gaston.models.Receita
+import com.example.gaston.model.Despesa
+import com.example.gaston.model.Receita
 
 @Dao
 interface TransacaoDao {
 
     @Insert
-    suspend fun insertDespesa(despesa: Despesa)
+    suspend fun insertDespesa(despesa: com.example.gaston.model.Despesa)
 
     @Insert
     suspend fun insertReceita(receita: Receita)

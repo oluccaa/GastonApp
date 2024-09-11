@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Escolha uma categoria"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Exemplo de categorias -->
+        <Button
+            android:id="@+id/buttonConsumo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Consumo"/>
+
+        <Button
+            android:id="@+id/buttonSaude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Saúde"/>
+
+        <Button
+            android:id="@+id/buttonCasa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Casa"/>
+
+        <Button
+            android:id="@+id/buttonPet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pet"/>
+
+        <Button
+            android:id="@+id/buttonTransporte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Transporte"/>
+
+        <Button
+            android:id="@+id/buttonEducacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Educação"/>
+
+        <Button
+            android:id="@+id/buttonOutros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Outros"/>
+
+    </LinearLayout>
+</LinearLayout>

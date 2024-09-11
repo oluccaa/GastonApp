@@ -29,5 +29,6 @@
     <color name="light_blue">#6383e4</color>
     <color name="space_cadet">#2B2D42</color>
     <color name="backgrounColor">#fafafa</color>
+    <color name="line_menu_gray">#9e9e9e</color>
 
 </resources>

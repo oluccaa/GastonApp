@@ -1,263 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgrounColor"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/container_rectangle"
-        android:padding="8dp">
-
-        <View
-            android:id="@+id/contentCirculo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/container_circle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </View>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="iconeUser"
-            android:src="@drawable/ic_usuario"
-            app:layout_constraintBottom_toBottomOf="@id/contentCirculo"
-            app:layout_constraintEnd_toEndOf="@id/contentCirculo"
-            app:layout_constraintStart_toStartOf="@id/contentCirculo"
-            app:layout_constraintTop_toTopOf="@id/contentCirculo">
-
-        </ImageView>
-
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="128dp"
-            android:layout_marginBottom="3dp"
-            android:text="R$ 0,00"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/textView9"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="76dp"
-            android:text="@string/txt_saldoRestante"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10">
-
-        </TextView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/resumoValues"
-        android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:background="@color/backgrounColor">
-
-        <View
-        android:id="@+id/squareReceitas"
-        android:layout_width="160dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/square_rectangle"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/btnv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/main_graph"/>
 
-        </View>
-
-        <View
-            android:id="@+id/squareGreen"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/square_green"
-            app:layout_constraintStart_toStartOf="@id/squareReceitas"
-            app:layout_constraintBottom_toBottomOf="@id/squareReceitas"
-            app:layout_constraintTop_toTopOf="@id/squareReceitas">
-
-        </View>
-
-        <View
-            android:id="@+id/cifraoGreen"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/cifrao_green"
-            app:layout_constraintStart_toStartOf="@id/squareGreen"
-            app:layout_constraintEnd_toEndOf="@id/squareGreen"
-            app:layout_constraintBottom_toBottomOf="@id/squareGreen"
-            app:layout_constraintTop_toTopOf="@id/squareGreen">
-
-        </View>
-
-        <TextView
-            android:id="@+id/textViewTotalReceitas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="15dp"
-            android:text="+ R$ 0.00"
-            android:textColor="@color/green"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/squareReceitas"
-            app:layout_constraintTop_toTopOf="@id/squareReceitas" />
-
-        <View
-            android:id="@+id/squareDespesas"
-            android:layout_width="160dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/square_rectangle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </View>
-
-        <View
-            android:id="@+id/squareRed"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/square_red"
-            app:layout_constraintStart_toStartOf="@id/squareDespesas"
-            app:layout_constraintBottom_toBottomOf="@id/squareDespesas"
-            app:layout_constraintTop_toTopOf="@id/squareDespesas">
-
-        </View>
-
-        <View
-            android:id="@+id/cifraoRed"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/cifrao_red"
-            app:layout_constraintStart_toStartOf="@id/squareRed"
-            app:layout_constraintEnd_toEndOf="@id/squareRed"
-            app:layout_constraintBottom_toBottomOf="@id/squareRed"
-            app:layout_constraintTop_toTopOf="@id/squareRed">
-
-        </View>
-
-        <TextView
-            android:id="@+id/textViewTotalDespesas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="15dp"
-            android:text="- R$ 0.00"
-            android:textColor="@color/red"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/squareDespesas"
-            app:layout_constraintTop_toTopOf="@id/squareDespesas" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btnv"
         android:layout_width="match_parent"
-        android:layout_height="143dp"
-        android:background="@color/backgrounColor">
+        android:layout_height="78dp"
+        android:background="@drawable/bg_bottombar"
+        app:itemPaddingBottom="16dp"
+        app:itemPaddingTop="16dp"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_main">
 
-        <Button
-            android:id="@+id/buttonReceita"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/green"
-            android:text="@string/Receita"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonDespesa"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/buttonOrcamento"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
-
-        <Button
-            android:id="@+id/buttonOrcamento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
-            android:layout_marginEnd="6dp"
-            android:backgroundTint="@color/dark_blue"
-            android:text="@string/Orcamento"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonReceita"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.505" />
-
-        <Button
-            android:id="@+id/buttonDespesa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginEnd="33dp"
-            android:backgroundTint="@color/red"
-            android:text="@string/Despesa"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/buttonReceita"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/coordinatorNavigation"
-        >
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@color/light_grey"
-            app:menu="@menu/bottom_nav_menu"
-            />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</LinearLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+</androidx.constraintlayout.widget.ConstraintLayout>

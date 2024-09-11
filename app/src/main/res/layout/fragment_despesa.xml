@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.DespesaFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:text="DESPESA"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp">
+
+        <EditText
+            android:id="@+id/editTextValorDespesa"
+            android:layout_width="343dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="25dp"
+            android:hint="Valor da Despesa"
+            android:inputType="numberDecimal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextTituloDespesa"
+            android:layout_width="343dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="25dp"
+            android:hint="Título da Despesa"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="@id/editTextValorDespesa"
+            app:layout_constraintTop_toBottomOf="@id/editTextValorDespesa" />
+
+        <TextView
+            android:id="@+id/editTextCategoriaDespesa"
+            android:layout_width="343dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="25dp"
+            android:hint="Categoria da Despesa"
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:textSize="17sp"
+            android:paddingTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/editTextTituloDespesa"
+            app:layout_constraintTop_toBottomOf="@id/editTextTituloDespesa" />
+
+        <EditText
+            android:id="@+id/editTextDataDespesa"
+            android:layout_width="343dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="25dp"
+            android:hint="Data da Despesa"
+            android:inputType="date"
+            app:layout_constraintStart_toStartOf="@id/editTextCategoriaDespesa"
+            app:layout_constraintTop_toBottomOf="@id/editTextCategoriaDespesa"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroupTipoDespesa"
+            android:layout_width="339dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="25dp"
+            android:hint="Tipo da Despesa"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/editTextDataDespesa"
+            app:layout_constraintTop_toBottomOf="@id/editTextDataDespesa">
+
+            <RadioButton
+                android:id="@+id/radioButtonEssencial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Essencial" />
+
+            <RadioButton
+                android:id="@+id/radioButtonNecessario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Necessário" />
+
+            <RadioButton
+                android:id="@+id/radioButtonExtra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Extra" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/buttonAdicionarDespesa"
+            android:layout_width="343dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="90dp"
+            android:text="Adicionar"
+            app:layout_constraintStart_toStartOf="@id/editTextDataDespesa"
+            app:layout_constraintTop_toBottomOf="@id/editTextDataDespesa" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
