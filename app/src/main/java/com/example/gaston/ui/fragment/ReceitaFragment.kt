@@ -1,7 +1,7 @@
 package com.example.gaston.ui.fragment
 
-import CurrencyFormattingTextWatcher
-import DateFormattingTextWatcher
+import com.example.gaston.util.CurrencyFormattingTextWatcher
+import com.example.gaston.util.DateFormattingTextWatcher
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -56,10 +56,10 @@ class ReceitaFragment : Fragment() {
         val dataEditText = view.findViewById<EditText>(R.id.editTextDataReceita)
         val buttonAdicionarReceita = view.findViewById<Button>(R.id.buttonAdicionarReceita)
 
-        // Adicionar o CurrencyFormattingTextWatcher ao campo de valor
+        // Adicionar o com.example.gaston.util.CurrencyFormattingTextWatcher ao campo de valor
         valorEditText.addTextChangedListener(CurrencyFormattingTextWatcher(valorEditText))
 
-        // Adicionar o DateFormattingTextWatcher ao campo de data
+        // Adicionar o com.example.gaston.util.DateFormattingTextWatcher ao campo de data
         dataEditText.addTextChangedListener(DateFormattingTextWatcher(dataEditText))
 
         // Abrir o BottomSheet para selecionar a categoria

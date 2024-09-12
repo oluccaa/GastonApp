@@ -1,3 +1,6 @@
+package com.example.gaston.util
+
+import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
@@ -17,6 +20,7 @@ class CurrencyFormattingTextWatcher(private val editText: EditText) : TextWatche
         // Nada a fazer enquanto o texto está sendo mudado
     }
 
+    @SuppressLint("SetTextI18n")
     override fun afterTextChanged(s: Editable?) {
         if (isFormatting) return
 

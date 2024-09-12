@@ -26,7 +26,7 @@ class CalculoOrcamentoFragment : Fragment() {
         val valorOrcamento = arguments?.getDouble("VALOR_ORCAMENTO")
 
         // Criar um formato de número
-        val decimalFormat = DecimalFormat("#,##0.00")
+        val decimalFormat = DecimalFormat("R$ #,##0.00")
 
         // Exibir os valores no layout
         val rendaTextView: TextView = view.findViewById(R.id.rendaTextView)

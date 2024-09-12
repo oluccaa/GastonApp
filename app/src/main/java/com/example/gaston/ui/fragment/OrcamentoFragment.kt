@@ -12,6 +12,7 @@ import com.example.gaston.R
 import com.example.gaston.database.AppDatabase
 import com.example.gaston.databinding.FragmentOrcamentoBinding
 import com.example.gaston.model.Renda
+import com.example.gaston.util.CurrencyFormattingTextWatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -35,6 +36,9 @@ class OrcamentoFragment : Fragment() {
 
         db = AppDatabase.getDatabase(requireContext())
 
+        // Adicione o TextWatcher ao EditText
+        binding.valorRenda.addTextChangedListener(CurrencyFormattingTextWatcher(binding.valorRenda))
+
         binding.buttonProximo.setOnClickListener {
             val rendaString = binding.valorRenda.text.toString().trim()
             if (rendaString.isNotEmpty()) {
@@ -47,19 +51,24 @@ class OrcamentoFragment : Fragment() {
 
     private fun processarRenda(rendaString: String) {
         try {
-            val renda = rendaString.toDouble()
+            // Remove o símbolo da moeda, pontos e substitui a vírgula por ponto
+            val renda = rendaString
+                .replace("R$", "") // Remove o símbolo da moeda
+                .replace(".", "") // Remove o separador de milhar
+                .replace(",", ".") // Substitui a vírgula decimal por ponto decimal
+                .trim()
+                .toDouble()
+
             if (renda > 0) {
-                val descontoINSS = calcularDescontoINSS(renda) //Função ali em baixo
-                val valorOrcamento = renda - descontoINSS // Calcula o valor disponível após o desconto do INSS
+                val descontoINSS = calcularDescontoINSS(renda)
+                val valorOrcamento = renda - descontoINSS
                 lifecycleScope.launch {
                     try {
                         val rendaExistente = db.rendaDao().buscarRenda()
                         if (rendaExistente != null) {
-                            // Atualiza o orçamento existente
                             val novaRenda = rendaExistente.copy(valor = renda, orcamento = valorOrcamento)
                             atualizarRenda(novaRenda)
                         } else {
-                            // Insere um novo orçamento
                             inserirRenda(renda, valorOrcamento)
                         }
                         navegarParaCalculoOrcamentoFragment(renda, valorOrcamento)
@@ -82,11 +91,6 @@ class OrcamentoFragment : Fragment() {
             renda <= 4000.03 -> (1412 * 0.075) + ((2666.68 - 1412) * 0.09) + ((renda - 2666.68) * 0.12)
             renda <= 7786.02 -> (1412 * 0.075) + ((2666.68 - 1412) * 0.09) + ((4000.03 - 2666.68) * 0.12) + ((renda - 4000.03) * 0.14)
             else -> (1412 * 0.075) + ((2666.68 - 1412) * 0.09) + ((4000.03 - 2666.68) * 0.12) + ((7786.02 - 4000.03) * 0.14)
-            //
-            //Até R$ 1.412,00: 7,5%
-            //De R$ 1.412,01 até R$ 2.666,68: 9%
-            //De R$ 2.666,69 até R$ 4.000,03: 12%
-            //De R$ 4.000,04 até R$ 7.786,02: 14%
         }
     }
 

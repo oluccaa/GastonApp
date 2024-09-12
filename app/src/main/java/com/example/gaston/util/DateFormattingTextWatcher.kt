@@ -1,3 +1,5 @@
+package com.example.gaston.util
+
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
