@@ -25,7 +25,7 @@ class OrcamentoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentOrcamentoBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -49,7 +49,8 @@ class OrcamentoFragment : Fragment() {
         try {
             val renda = rendaString.toDouble()
             if (renda > 0) {
-                val valorOrcamento = renda * 0.80 // Calcula 80% do valor da renda
+                val descontoINSS = calcularDescontoINSS(renda) //Função ali em baixo
+                val valorOrcamento = renda - descontoINSS // Calcula o valor disponível após o desconto do INSS
                 lifecycleScope.launch {
                     try {
                         val rendaExistente = db.rendaDao().buscarRenda()
@@ -61,7 +62,7 @@ class OrcamentoFragment : Fragment() {
                             // Insere um novo orçamento
                             inserirRenda(renda, valorOrcamento)
                         }
-                        navegarParaHomeFragment(renda, valorOrcamento)
+                        navegarParaCalculoOrcamentoFragment(renda, valorOrcamento)
                     } catch (e: Exception) {
                         mostrarMensagem("Erro ao salvar renda: ${e.message}")
                     }
@@ -71,6 +72,21 @@ class OrcamentoFragment : Fragment() {
             }
         } catch (e: NumberFormatException) {
             mostrarMensagem("Insira um valor válido.")
+        }
+    }
+
+    private fun calcularDescontoINSS(renda: Double): Double {
+        return when {
+            renda <= 1412 -> renda * 0.075
+            renda <= 2666.68 -> (1412 * 0.075) + ((renda - 1412) * 0.09)
+            renda <= 4000.03 -> (1412 * 0.075) + ((2666.68 - 1412) * 0.09) + ((renda - 2666.68) * 0.12)
+            renda <= 7786.02 -> (1412 * 0.075) + ((2666.68 - 1412) * 0.09) + ((4000.03 - 2666.68) * 0.12) + ((renda - 4000.03) * 0.14)
+            else -> (1412 * 0.075) + ((2666.68 - 1412) * 0.09) + ((4000.03 - 2666.68) * 0.12) + ((7786.02 - 4000.03) * 0.14)
+            //
+            //Até R$ 1.412,00: 7,5%
+            //De R$ 1.412,01 até R$ 2.666,68: 9%
+            //De R$ 2.666,69 até R$ 4.000,03: 12%
+            //De R$ 4.000,04 até R$ 7.786,02: 14%
         }
     }
 
@@ -86,12 +102,12 @@ class OrcamentoFragment : Fragment() {
         }
     }
 
-    private fun navegarParaHomeFragment(renda: Double, valorOrcamento: Double) {
+    private fun navegarParaCalculoOrcamentoFragment(renda: Double, valorOrcamento: Double) {
         val bundle = Bundle().apply {
             putDouble("ACUSA_RENDA", renda)
             putDouble("VALOR_ORCAMENTO", valorOrcamento)
         }
-        findNavController().navigate(R.id.action_orcamentoFragment_to_homeFragment, bundle)
+        findNavController().navigate(R.id.action_orcamentoFragment_to_calculoOrcamentoFragment, bundle)
     }
 
     private fun mostrarMensagem(mensagem: String) {
