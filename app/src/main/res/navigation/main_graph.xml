@@ -15,23 +15,30 @@
         android:name="com.example.gaston.ui.fragment.DespesaFragment"
         android:label="fragment_despesa"
         tools:layout="@layout/fragment_despesa" />
+
     <fragment
         android:id="@+id/menu_receita"
         android:name="com.example.gaston.ui.fragment.ReceitaFragment"
         android:label="fragment_receita"
-        tools:layout="@layout/fragment_receita" />
+        tools:layout="@layout/fragment_receita">
+    </fragment>
     <fragment
         android:id="@+id/menu_orcamento"
         android:name="com.example.gaston.ui.fragment.OrcamentoFragment"
         android:label="fragment_orcamento"
         tools:layout="@layout/fragment_orcamento">
         <action
-            android:id="@+id/action_orcamentoFragment_to_homeFragment"
-            app:destination="@id/menu_home" />
+            android:id="@+id/action_orcamentoFragment_to_calculoOrcamentoFragment"
+            app:destination="@id/CalculoOrcamentoFragment" />
     </fragment>
     <fragment
         android:id="@+id/menu_historico"
         android:name="com.example.gaston.ui.fragment.HistoricoFragment"
         android:label="fragment_historico"
         tools:layout="@layout/fragment_historico" />
-    </navigation>
+    <fragment
+        android:id="@+id/CalculoOrcamentoFragment"
+        android:name="com.example.gaston.ui.fragment.CalculoOrcamentoFragment"
+        android:label="fragment_calculo_orcamento"
+        tools:layout="@layout/fragment_calculo_orcamento"/>
+</navigation>
