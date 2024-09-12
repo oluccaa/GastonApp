@@ -2,6 +2,7 @@ package com.example.gaston.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initNavigation()
 
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
     }
     private fun initNavigation(){

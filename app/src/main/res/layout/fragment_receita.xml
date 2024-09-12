@@ -12,26 +12,18 @@
         android:layout_height="130dp"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_returnPageReceita"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="44dp"
-            android:backgroundTint="@color/black"
-            android:background="@drawable/ic_arrow_return_left"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="168dp"
             android:layout_marginTop="52dp"
+            android:layout_marginBottom="55dp"
             android:text="RECEITA"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -63,14 +55,21 @@
             app:layout_constraintStart_toStartOf="@id/editTextValorReceita"
             app:layout_constraintTop_toBottomOf="@id/editTextValorReceita" />
 
-        <EditText
+        <TextView
             android:id="@+id/editTextCategoriaReceita"
             android:layout_width="343dp"
             android:layout_height="44dp"
             android:layout_marginTop="25dp"
             android:hint="Categoria da Receita"
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:textSize="17sp"
+            android:paddingTop="10dp"
             app:layout_constraintStart_toStartOf="@id/editTextTituloReceita"
             app:layout_constraintTop_toBottomOf="@id/editTextTituloReceita" />
+
 
         <EditText
             android:id="@+id/editTextDataReceita"

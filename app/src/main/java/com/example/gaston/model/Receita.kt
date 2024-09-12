@@ -10,4 +10,4 @@ data class Receita(
     val titulo: String,
     val categoria: String,
     val data: String,
-)
+    )

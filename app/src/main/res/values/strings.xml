@@ -24,5 +24,19 @@
     <string name="menu_bottom_bar_transacao">Transação</string>
     <string name="menu_bottom_bar_historico">Histórico</string>
     <string name="iconeuser">iconeUser</string>
+    <string name="categoria">Categoria</string>
+    <string name="data">Data</string>
+
+
+    <string-array name="categorias_despesa">
+        <item>Consumo</item>
+        <item>Saúde</item>
+        <item>Casa</item>
+        <item>Pet</item>
+        <item>Transporte</item>
+        <item>Educação</item>
+        <item>Outros</item>
+    </string-array>
+
 
 </resources>

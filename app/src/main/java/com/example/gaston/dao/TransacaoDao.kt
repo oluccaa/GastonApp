@@ -11,7 +11,7 @@ import com.example.gaston.model.Receita
 interface TransacaoDao {
 
     @Insert
-    suspend fun insertDespesa(despesa: Despesa)
+    suspend fun insertDespesa(despesa: com.example.gaston.model.Despesa)
 
     @Insert
     suspend fun insertReceita(receita: Receita)
