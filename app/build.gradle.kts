@@ -16,6 +16,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        ksp {
+            arg("room.schemaLocation", "$projectDir/src/main/java/com/example/gaston/schemas")
+        }
     }
 
     buildTypes {
@@ -41,13 +45,12 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.recyclerview)
     // For control over item selection of both touch and mouse driven selection
     implementation(libs.androidx.recyclerview.selection)
-    implementation (libs.material.v190)
-    implementation (libs.kotlin.stdlib)
-    implementation (libs.androidx.room.ktx)
+    implementation(libs.material.v190)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -66,4 +69,3 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
 }
-

@@ -190,7 +190,6 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/squareDespesas"
             app:layout_constraintTop_toTopOf="@id/squareDespesas" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
 
