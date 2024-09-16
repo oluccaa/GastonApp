@@ -64,16 +64,27 @@ class OrcamentoFragment : Fragment() {
                 val valorOrcamento = renda - descontoINSS
                 lifecycleScope.launch {
                     try {
-                        val rendaExistente = db.rendaDao().buscarRenda()
+                        // Obtém o total de despesas e receitas
+                        val despesas = withContext(Dispatchers.IO) { db.transacaoDao().getAllDespesas() }
+                        val receitas = withContext(Dispatchers.IO) { db.transacaoDao().getAllReceitas() }
+
+                        val totalDespesas = despesas.sumOf { it.valor }
+                        val totalReceitas = receitas.sumOf { it.valor }
+                        val saldoRestante = (valorOrcamento - totalDespesas) + totalReceitas
+
+                        // Atualiza ou insere a renda no banco de dados
+                        val rendaExistente = withContext(Dispatchers.IO) { db.rendaDao().buscarRenda() }
                         if (rendaExistente != null) {
                             val novaRenda = rendaExistente.copy(valor = renda, orcamento = valorOrcamento)
                             atualizarRenda(novaRenda)
                         } else {
-                            inserirRenda(renda, valorOrcamento)
+                            inserirRenda(renda, valorOrcamento, saldoRestante)
                         }
+
+                        // Navega para o próximo fragmento
                         navegarParaCalculoOrcamentoFragment(renda, valorOrcamento)
                     } catch (e: Exception) {
-                        mostrarMensagem("Erro ao salvar renda: ${e.message}")
+                        mostrarMensagem("Erro ao processar renda: ${e.message}")
                     }
                 }
             } else {
@@ -100,9 +111,9 @@ class OrcamentoFragment : Fragment() {
         }
     }
 
-    private suspend fun inserirRenda(valor: Double, valorOrcamento: Double) {
+    private suspend fun inserirRenda(valor: Double, valorOrcamento: Double, saldoRestante: Double) {
         withContext(Dispatchers.IO) {
-            db.rendaDao().inserirRenda(Renda(valor = valor, orcamento = valorOrcamento))
+            db.rendaDao().inserirRenda(Renda(valor = valor, orcamento = valorOrcamento, saldoRestante = saldoRestante))
         }
     }
 

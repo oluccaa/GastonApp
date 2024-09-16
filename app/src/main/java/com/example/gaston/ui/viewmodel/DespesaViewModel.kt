@@ -1,17 +1,17 @@
-package com.example.gaston.viewmodel
+package com.example.gaston.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gaston.model.Receita
-import com.example.gaston.repository.ReceitaRepository
+import com.example.gaston.model.Despesa
+import com.example.gaston.repository.DespesaRepository
 import kotlinx.coroutines.launch
 
-class ReceitaViewModel(private val repository: ReceitaRepository) : ViewModel() {
+class DespesaViewModel(private val repository: DespesaRepository) : ViewModel() {
 
-    fun adicionarReceita(receita: Receita) {
+    fun adicionarDespesa(despesa: Despesa) {
         viewModelScope.launch {
             try {
-                repository.adicionarReceita(receita)
+                repository.adicionarDespesa(despesa)
             } catch (e: Exception) {
                 // Lidar com exceções, talvez expor um LiveData para mensagens de erro
             }

@@ -1,4 +1,4 @@
-package com.example.gaston.ui.fragment
+package com.example.gaston.ui.view
 
 import android.os.Bundle
 import android.view.LayoutInflater

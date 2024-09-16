@@ -1,9 +1,10 @@
-package com.example.gaston.dao
+package com.example.gaston.dao//package com.example.gaston.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.gaston.model.Despesa
 import com.example.gaston.model.Receita
 
@@ -11,7 +12,7 @@ import com.example.gaston.model.Receita
 interface TransacaoDao {
 
     @Insert
-    suspend fun insertDespesa(despesa: com.example.gaston.model.Despesa)
+    suspend fun insertDespesa(despesa: Despesa)
 
     @Insert
     suspend fun insertReceita(receita: Receita)
@@ -27,4 +28,10 @@ interface TransacaoDao {
 
     @Delete
     suspend fun deleteReceita(receita: Receita)
+
+    @Update
+    suspend fun updateDespesa(despesa: Despesa)
+
+    @Update
+    suspend fun updateReceita(receita: Receita)
 }

@@ -16,8 +16,9 @@ import com.example.gaston.R
 import com.example.gaston.database.AppDatabase
 import com.example.gaston.model.Receita
 import com.example.gaston.repository.ReceitaRepository
-import com.example.gaston.viewmodel.ReceitaViewModel
-import com.example.gaston.viewmodel.ReceitaViewModelFactory
+import com.example.gaston.ui.view.CategoriaBottomSheetFragment
+import com.example.gaston.ui.viewmodel.ReceitaViewModel
+import com.example.gaston.ui.viewmodel.ReceitaViewModelFactory
 import kotlinx.coroutines.launch
 
 class ReceitaFragment : Fragment() {

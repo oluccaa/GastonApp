@@ -6,38 +6,35 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editTextTitulo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Título"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/editTextValor"
+        android:id="@+id/editValor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Valor"
         android:inputType="numberDecimal" />
-
     <EditText
-        android:id="@+id/editTextCategoria"
+        android:id="@+id/editTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Categoria"
-        android:inputType="text" />
+        android:hint="Título"
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/editCategoria"
+        android:layout_width="343dp"
+        android:layout_height="44dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="Categoria da Despesa"
+        android:inputType="none"
+        android:paddingTop="10dp"
+        android:textSize="17sp" />
 
     <EditText
-        android:id="@+id/editTextData"
+        android:id="@+id/editData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Data (yyyy-mm-dd)"
         android:inputType="date" />
-
-    <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Salvar"
-        android:layout_gravity="center" />
 
 </LinearLayout>

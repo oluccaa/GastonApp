@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class Renda(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val valor: Double,
-    val orcamento: Double
+    val orcamento: Double,
+    val saldoRestante: Double
 )

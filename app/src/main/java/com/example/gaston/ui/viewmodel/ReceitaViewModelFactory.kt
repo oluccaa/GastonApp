@@ -1,4 +1,4 @@
-package com.example.gaston.viewmodel
+package com.example.gaston.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

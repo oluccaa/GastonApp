@@ -16,8 +16,9 @@ import com.example.gaston.R
 import com.example.gaston.database.AppDatabase
 import com.example.gaston.model.Despesa
 import com.example.gaston.repository.DespesaRepository
-import com.example.gaston.viewmodel.DespesaViewModel
-import com.example.gaston.viewmodel.DespesaViewModelFactory
+import com.example.gaston.ui.view.CategoriaBottomSheetFragment
+import com.example.gaston.ui.viewmodel.DespesaViewModel
+import com.example.gaston.ui.viewmodel.DespesaViewModelFactory
 import kotlinx.coroutines.launch
 
 class DespesaFragment : Fragment() {
