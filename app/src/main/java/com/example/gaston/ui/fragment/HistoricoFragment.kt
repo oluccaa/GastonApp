@@ -98,9 +98,6 @@ class HistoricoFragment : Fragment() {
             }
         }
 
-        // Adicionar o CurrencyFormattingTextWatcher ao campo de valor
-        valorInput.addTextChangedListener(CurrencyFormattingTextWatcher(valorInput))
-
         categoriaTextView.setOnClickListener {
             val bottomSheet = CategoriaBottomSheetFragment { categoria ->
                 categoriaTextView.text = categoria
