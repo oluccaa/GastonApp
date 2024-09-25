@@ -36,35 +36,37 @@ class OrcamentoFragment : Fragment() {
 
         db = AppDatabase.getDatabase(requireContext())
 
-        // Adicione o TextWatcher ao EditText
+        // Adiciona o TextWatcher ao EditText para formatar o valor da renda como moeda
         binding.valorRenda.addTextChangedListener(CurrencyFormattingTextWatcher(binding.valorRenda))
 
-        binding.buttonProximo.setOnClickListener {
+        binding.buttonConfirmar.setOnClickListener {
             val rendaString = binding.valorRenda.text.toString().trim()
-            if (rendaString.isNotEmpty()) {
-                processarRenda(rendaString)
+            val economiaString = binding.valorEconomia.text.toString().trim()
+
+            // Valida os campos de entrada
+            if (rendaString.isNotEmpty() && economiaString.isNotEmpty()) {
+                processarRenda(rendaString, economiaString)
             } else {
-                mostrarMensagem("O campo de renda não pode estar vazio.")
+                mostrarMensagem("Preencha todos os campos.")
             }
         }
     }
 
-    private fun processarRenda(rendaString: String) {
+    private fun processarRenda(rendaString: String, economiaString: String) {
         try {
-            // Remove o símbolo da moeda, pontos e substitui a vírgula por ponto
-            val renda = rendaString
-                .replace("R$", "") // Remove o símbolo da moeda
-                .replace(".", "") // Remove o separador de milhar
-                .replace(",", ".") // Substitui a vírgula decimal por ponto decimal
-                .trim()
-                .toDouble()
+            // Converte o valor da renda para double após remover símbolos de formatação
+            val renda = rendaString.replace("R$", "").replace(".", "").replace(",", ".").trim().toDouble()
+            val economia = economiaString.toDouble()
 
             if (renda > 0) {
                 val descontoINSS = calcularDescontoINSS(renda)
-                val valorOrcamento = renda - descontoINSS
+                val valorCalculo = renda - descontoINSS
+                val economiaFeita = calcularEconomia(economia, valorCalculo)
+                val valorOrcamento = valorCalculo - economiaFeita
+
                 lifecycleScope.launch {
                     try {
-                        // Obtém o total de despesas e receitas
+                        // Obtém as despesas e receitas
                         val despesas = withContext(Dispatchers.IO) { db.transacaoDao().getAllDespesas() }
                         val receitas = withContext(Dispatchers.IO) { db.transacaoDao().getAllReceitas() }
 
@@ -72,7 +74,7 @@ class OrcamentoFragment : Fragment() {
                         val totalReceitas = receitas.sumOf { it.valor }
                         val saldoRestante = (valorOrcamento - totalDespesas) + totalReceitas
 
-                        // Atualiza ou insere a renda no banco de dados
+                        // Verifica se já existe uma renda no banco e atualiza/inserir
                         val rendaExistente = withContext(Dispatchers.IO) { db.rendaDao().buscarRenda() }
                         if (rendaExistente != null) {
                             val novaRenda = rendaExistente.copy(valor = renda, orcamento = valorOrcamento)
@@ -82,7 +84,7 @@ class OrcamentoFragment : Fragment() {
                         }
 
                         // Navega para o próximo fragmento
-                        navegarParaCalculoOrcamentoFragment(renda, valorOrcamento)
+                        navegarParaCalculoOrcamentoFragment(renda, valorOrcamento, descontoINSS, economia, economiaFeita)
                     } catch (e: Exception) {
                         mostrarMensagem("Erro ao processar renda: ${e.message}")
                     }
@@ -95,6 +97,7 @@ class OrcamentoFragment : Fragment() {
         }
     }
 
+    // Função para calcular o desconto do INSS com base na renda
     private fun calcularDescontoINSS(renda: Double): Double {
         return when {
             renda <= 1412 -> renda * 0.075
@@ -105,26 +108,38 @@ class OrcamentoFragment : Fragment() {
         }
     }
 
+    // Função para calcular a economia com base na porcentagem
+    private fun calcularEconomia(economia: Double, valorCalculo: Double): Double {
+        return (economia / 100) * valorCalculo
+    }
+
+    // Atualiza a renda no banco de dados
     private suspend fun atualizarRenda(renda: Renda) {
         withContext(Dispatchers.IO) {
             db.rendaDao().atualizarRenda(renda)
         }
     }
 
+    // Insere uma nova renda no banco de dados
     private suspend fun inserirRenda(valor: Double, valorOrcamento: Double, saldoRestante: Double) {
         withContext(Dispatchers.IO) {
             db.rendaDao().inserirRenda(Renda(valor = valor, orcamento = valorOrcamento, saldoRestante = saldoRestante))
         }
     }
 
-    private fun navegarParaCalculoOrcamentoFragment(renda: Double, valorOrcamento: Double) {
+    // Navega para o próximo fragmento passando os valores calculados
+    private fun navegarParaCalculoOrcamentoFragment(renda: Double, valorOrcamento: Double, descontoINSS: Double, economia: Double, economiaFeita: Double) {
         val bundle = Bundle().apply {
             putDouble("ACUSA_RENDA", renda)
             putDouble("VALOR_ORCAMENTO", valorOrcamento)
+            putDouble("INSS", descontoINSS)
+            putDouble("ECONOMIA", economia)
+            putDouble("ECONOMIAFEITA", economiaFeita)
         }
         findNavController().navigate(R.id.action_orcamentoFragment_to_calculoOrcamentoFragment, bundle)
     }
 
+    // Exibe mensagens de erro ou confirmação para o usuário
     private fun mostrarMensagem(mensagem: String) {
         Toast.makeText(requireContext(), mensagem, Toast.LENGTH_SHORT).show()
     }
