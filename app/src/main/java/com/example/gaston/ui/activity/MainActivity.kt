@@ -1,5 +1,8 @@
 package com.example.gaston.ui.activity
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -8,6 +11,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.gaston.R
 import com.example.gaston.databinding.ActivityMainBinding
+import com.example.gaston.util.NotificationReceiver
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,8 +28,21 @@ class MainActivity : AppCompatActivity() {
         // Desativar modo noturno
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
+        // Agendar o alarme para notificações diárias ao meio-dia
+        val calendar = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 13)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+        }
+
+        val intent = Intent(this, NotificationReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
     }
-    private fun initNavigation(){
+
+    private fun initNavigation() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.btnv, navController)

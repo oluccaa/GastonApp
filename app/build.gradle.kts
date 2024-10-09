@@ -45,13 +45,12 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.core:core-ktx:1.6.0")
     implementation(libs.androidx.recyclerview)
-    // For control over item selection of both touch and mouse driven selection
     implementation(libs.androidx.recyclerview.selection)
     implementation(libs.material.v190)
     implementation(libs.kotlin.stdlib)
     implementation(libs.androidx.room.ktx)
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
@@ -59,7 +58,6 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.room.common)
-    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -67,5 +65,4 @@ dependencies {
     ksp(libs.dagger.compiler)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
-
 }

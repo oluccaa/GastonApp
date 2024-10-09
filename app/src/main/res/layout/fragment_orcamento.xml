@@ -135,18 +135,16 @@
             android:id="@+id/buttonConfirmar"
             android:layout_width="150dp"
             android:layout_height="46dp"
-            android:layout_marginTop="160dp"
-            android:layout_marginBottom="80dp"
+            android:layout_marginTop="95dp"
+            android:layout_marginBottom="100dp"
             android:backgroundTint="@color/green"
             android:text="Confirmar"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
