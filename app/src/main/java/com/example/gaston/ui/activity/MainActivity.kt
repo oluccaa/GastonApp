@@ -13,8 +13,6 @@ import com.example.gaston.R
 import com.example.gaston.databinding.ActivityMainBinding
 import com.example.gaston.util.NotificationReceiver
 import java.util.Calendar
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,10 +25,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initNavigation()
 
-        // Inicializa a splash screen para a atividade atual e configura o comportamento de exibição
-        installSplashScreen().setKeepOnScreenCondition {
-            true
-        }
         // Desativar modo noturno
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
