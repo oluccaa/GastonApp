@@ -28,18 +28,22 @@ class MainActivity : AppCompatActivity() {
         // Desativar modo noturno
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        // Agendar o alarme para notificações diárias ao meio-dia
+        // Agendar o alarme para notificações diárias para as 13 da tarde
         val calendar = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 13)
+            set(Calendar.HOUR_OF_DAY, 13) // Ajuste para as 13 da tarde
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
+            // Se o horário já passou hoje, agende para amanhã
+            if (timeInMillis < System.currentTimeMillis()) {
+                add(Calendar.DAY_OF_YEAR, 1)
+            }
         }
 
         val intent = Intent(this, NotificationReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
     }
 
     private fun initNavigation() {
