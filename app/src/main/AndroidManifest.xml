@@ -26,6 +26,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.activity.TelaNotificacao" />
+
+
         <receiver android:name=".util.NotificationReceiver" />
 
     </application>
