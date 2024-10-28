@@ -46,8 +46,8 @@ android {
 
 dependencies {
     //Splash API
-    implementation ("androidx.core:core-splashscreen:1.0.1")
-    implementation ("androidx.core:core-ktx:1.6.0")
+    implementation (libs.androidx.core.splashscreen)
+    implementation (libs.androidx.core.ktx.v160)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.recyclerview.selection)
     implementation(libs.material.v190)
