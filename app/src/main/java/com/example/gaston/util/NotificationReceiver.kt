@@ -17,11 +17,17 @@ class NotificationReceiver : BroadcastReceiver() {
             val channel = NotificationChannel(channelId, "Daily Expense Notifications", NotificationManager.IMPORTANCE_DEFAULT)
             notificationManager.createNotificationChannel(channel)
         }
+
+        val title = intent.getStringExtra("title") ?: "Lembrete"
+        val message = intent.getStringExtra("message") ?: "Você tem um lembrete!"
+
         val builder = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.logo_horizontal)
-            .setContentTitle("Lembrete Diário")
-            .setContentText("Não se esqueça de adicionar as suas despesas de hoje!")
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setContentTitle(title)
+            .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-        notificationManager.notify(1, builder.build())
+
+        notificationManager.notify((System.currentTimeMillis() % Int.MAX_VALUE).toInt(), builder.build())
     }
+
 }
