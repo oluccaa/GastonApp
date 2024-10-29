@@ -45,7 +45,9 @@ android {
 }
 
 dependencies {
-    implementation ("androidx.core:core-ktx:1.6.0")
+    //Splash API
+    implementation (libs.androidx.core.splashscreen)
+    implementation (libs.androidx.core.ktx.v160)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.recyclerview.selection)
     implementation(libs.material.v190)

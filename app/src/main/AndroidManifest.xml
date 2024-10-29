@@ -18,8 +18,10 @@
 
         <activity
             android:name=".ui.activity.MainActivity"
-            android:exported="true">
-            <intent-filter>
+            android:exported="true"
+            android:theme="@style/Theme.AnimatedSplash.MySplash">
+
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
