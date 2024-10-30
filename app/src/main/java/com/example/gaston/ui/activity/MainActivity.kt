@@ -41,6 +41,9 @@ class MainActivity : AppCompatActivity() {
         // Agendar notificações diárias
         scheduleNotification(18, 0, "Lembrete de Fim de Dia", "Revise suas despesas do dia!")
 
+        // Agendar notificações diárias
+        scheduleNotification(20, 0, "Cuidado! Seu Saldo está baixo!", "Revise suas despesas e tome cuidado!!")
+
         // Lembrar de chamar a função calcularSaldo aqui
         //val (novoSaldoRestante)
 
