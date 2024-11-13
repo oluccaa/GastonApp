@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.gaston.database.AppDatabase
 import com.example.gaston.databinding.FragmentHomeBinding
 import com.example.gaston.ui.activity.TelaNotificacao // Certifique-se de importar a Activity correta
+import com.example.gaston.util.NotificationReceiver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -82,6 +83,11 @@ class HomeFragment : Fragment() {
                 binding.textViewTotalReceitas.text = "+ R$ ${String.format("%.2f", totalReceitas)}"
                 binding.textView10.text = "R$ ${String.format("%.2f", novoSaldoRestante)}"
 
+                // Verificar se o saldo restante é menor ou igual a 100 e disparar notificação
+                if (novoSaldoRestante <= 100) {
+                    sendLowBalanceNotification()
+                }
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -110,10 +116,23 @@ class HomeFragment : Fragment() {
                 binding.textViewTotalReceitas.text = "+ R$ ${String.format("%.2f", totalReceitas)}"
                 binding.textView10.text = "R$ ${String.format("%.2f", novoSaldoRestante)}"
 
+                // Verificar se o saldo restante é menor ou igual a 100 e disparar notificação
+                if (novoSaldoRestante <= 100) {
+                    sendLowBalanceNotification()
+                }
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
+    }
+
+    private fun sendLowBalanceNotification() {
+        val intent = Intent(requireContext(), NotificationReceiver::class.java).apply {
+            putExtra("title", "Cuidado! Saldo Baixo!!")
+            putExtra("message", "Seu saldo está abaixo de R$ 100. Verifique suas despesas!")
+        }
+        requireContext().sendBroadcast(intent)
     }
 
     fun calcularSaldo(totalOrcamento: Double, totalDespesas: Double, totalReceitas: Double): Pair<Double, Double> {

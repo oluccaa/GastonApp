@@ -12,10 +12,6 @@ import com.example.gaston.R
 import com.example.gaston.model.Despesa
 import com.example.gaston.model.Receita
 import java.text.NumberFormat
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class TransacaoAdapter(
@@ -48,7 +44,7 @@ class TransacaoAdapter(
         private val textViewTitulo: TextView = itemView.findViewById(R.id.textViewTitulo)
         private val textViewValor: TextView = itemView.findViewById(R.id.textViewValor)
         private val textViewData: TextView = itemView.findViewById(R.id.textViewData)
-        private val textViewCategoria: TextView = itemView.findViewById(R.id.textViewCategoria)
+        private val textViewCategoria: TextView = itemView.findViewById(R.id.textViewMensagem)
         private val buttonEdit: Button = itemView.findViewById(R.id.buttonEdit)
         private val buttonDelete: Button = itemView.findViewById(R.id.buttonDelete)
 
