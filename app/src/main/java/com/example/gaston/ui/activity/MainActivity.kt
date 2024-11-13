@@ -12,19 +12,23 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.gaston.R
 import com.example.gaston.databinding.ActivityMainBinding
+import com.example.gaston.util.Notification
+import com.example.gaston.util.MyApplication
 import com.example.gaston.util.NotificationReceiver
 import java.util.Calendar
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen().setKeepOnScreenCondition {
-            false
-        }
+        installSplashScreen().setKeepOnScreenCondition { false }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initNavigation()
@@ -32,25 +36,17 @@ class MainActivity : AppCompatActivity() {
         // Desativar modo noturno
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        // Agendar notificações diárias
-        scheduleNotification(7, 0, "Bom Dia!", "Como vai? Caso você consiga alguma receita extra não se esqueça de registra-lá!!")
+        // Solicitar permissão para enviar notificações
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1)
+            }
+        }
 
         // Agendar notificações diárias
+        scheduleNotification(7, 0, "Bom Dia! Como vai?", "Caso você consiga uma receita extra não se esqueça de registra-lá!")
         scheduleNotification(13, 0, "Lembrete Diário", "Não se esqueça de adicionar as suas despesas de hoje!")
-
-        // Agendar notificações diárias
         scheduleNotification(18, 0, "Lembrete de Fim de Dia", "Revise suas despesas do dia!")
-
-        // Agendar notificações diárias
-        scheduleNotification(20, 0, "Cuidado! Seu Saldo está baixo!", "Revise suas despesas e tome cuidado!!")
-
-        // Lembrar de chamar a função calcularSaldo aqui
-        //val (novoSaldoRestante)
-
-        // usar novoSaldoRestante aqui
-        //if (novoSaldoRestante <= 150) {
-        //    scheduleNotification(9, 0, "Cuidado!", "O seu saldo está baixo!")
-        //}
     }
 
     private fun scheduleNotification(hour: Int, minute: Int, title: String, message: String) {
@@ -68,10 +64,18 @@ class MainActivity : AppCompatActivity() {
             putExtra("title", title)
             putExtra("message", message)
         }
-        val pendingIntent = PendingIntent.getBroadcast(this, hour * 100 + minute, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
+        val pendingIntent = PendingIntent.getBroadcast(this, hour * 100 + minute, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
+
+        // Salvar notificação em SharedPreferences
+        val sharedPreferences = getSharedPreferences("notifications", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val time = String.format("%02d:%02d", hour, minute)
+        val notification = "$title|$message|$time"
+        editor.putString("$hour:$minute", notification)
+        editor.apply()
     }
 
     private fun initNavigation() {
@@ -79,7 +83,4 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.btnv, navController)
     }
-
-
-
 }
